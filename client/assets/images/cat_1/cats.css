@@ -1,0 +1,12 @@
+.cat {
+  position: absolute;
+  margin: 250px 0 0 250px;
+  border: solid;
+}
+
+.cat_body {
+  background-image: url(Body1.png);
+  width: 373px;
+  height: 370px;
+  position:relative;
+}
