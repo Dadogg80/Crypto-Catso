@@ -28,13 +28,13 @@ function mtbColor(color,code) {
 }
 
 function eyeColor(color,code) {
-    $('.cat__eye--left, .pupil-right').css('background', '#' + color);
+    $('.pupil-left, .pupil-right').css('background', '#' + color);
     $('#eyescode').html('code: '+ code);
     $('#dnaeyes').html(code);
 }
 
 function earColor(color,code) {
-    $('.cat__ear--left-inside, .cat__ear--right, .cat__paw-right, .cat__paw-left, .cat__paw-left_inner, .cat__paw-right_inner').css('background', '#' + color);
+    $('.cat__ear--left, .cat__ear--right, .cat__paw-right, .cat__paw-left, .cat__paw-left_inner, .cat__paw-right_inner').css('background', '#' + color);
     $('#earscode').html('code: '+ code);
     $('#dnaears').html(code);
 }
