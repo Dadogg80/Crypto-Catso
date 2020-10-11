@@ -18,7 +18,7 @@ var defaultDNA = {
 
 // when page load
 $( document ).ready(function() {
-  $('#dnabody').html(defaultDNA.headColor);
+  $('#dnabody').html(defaultDNA.headcolor);
   $('#dnamouth').html(defaultDNA.mouthColor);
   $('#dnaeyes').html(defaultDNA.eyesColor);
   $('#dnaears').html(defaultDNA.earsColor);
@@ -61,6 +61,18 @@ function renderCat(dna){
 
     earColor(colors[dna.earsColor],dna.earsColor);
     $('#earcolor').val(dna.earsColor);
+
+    eyeVariation(dna.eyesShape);
+    $('#eyeshape').val(dna.eyesShape);
+
+    decorationVariation(dna.decorationPattern);
+    $('#decorationpattern').val(dna.decorationPattern)
+
+    decorationSideColor(colors[dna.decorationSidescolor],dna.decorationSidescolor);
+    $('#decorationsidecolor').val(dna.decorationSidescolor);
+
+    decorationMidColor(colors[dna.decorationMidcolor],dna.decorationMidcolor);
+    $('#decorationmidcolor').val(dna.decorationMidcolor);
 }
 
 // Changing cat colors
@@ -85,4 +97,30 @@ $('#eyecolor').change(()=>{
 $('#earcolor').change(()=>{
   var colorVal = $('#earcolor').val();
   earColor(colors[colorVal],colorVal);
+})
+
+// Changing the shape of the eyes
+$('#eyeshape').change(()=>{
+  // binds the number of the slider to the variable shape
+  var shape = parseInt($('#eyeshape').val());
+  eyeVariation(shape);
+})
+
+// Changing the shape of the dots on Catso's head
+$('#decorationpattern').change(()=>{
+  // binds the number of the slider to the variable shape
+  var num = parseInt($('#decorationpattern').val());
+  decorationVariation(num);
+})
+
+// Changing the color of the dots on Catso's head
+$('#decorationsidecolor').change(()=>{
+  var colorVal = $('#decorationsidecolor').val();
+  decorationSideColor(colors[colorVal],colorVal);
+})
+
+// Changing the color of the dots on Catso's head
+$('#decorationmidcolor').change(()=>{
+  var colorVal = $('#decorationmidcolor').val();
+  decorationMidColor(colors[colorVal],colorVal);
 })

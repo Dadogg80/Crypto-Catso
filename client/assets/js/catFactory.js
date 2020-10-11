@@ -39,40 +39,125 @@ function earColor(color,code) {
     $('#dnaears').html(code);
 }
 
+function decorationMidColor(color,code) {
+  $('.cat__head-dots').css('background', '#' + color);
+  $('#pc1code').html('code: '+ code);
+  $('#dnadecorationMid').html(code);
+}
+
+function decorationSideColor(color,code) {
+  $('.cat__head-dots_first, .cat__head-dots_second').css('background', '#' + color);
+  $('#pc2code').html('code: '+ code);
+  $('#dnadecorationSides').html(code);
+}
 
 
-//###################################################
-//Functions below will be used later on in the project
-//###################################################
+
 function eyeVariation(num) {
+    $('#dnashape').html(num);
 
-    $('#dnashape').html(num)
     switch (num) {
         case 1:
-            normalEyes()
-            $('#eyeName').html('Basic')
-            break
+            normalEyes();
+            $('#eyeName').html('Basic'); //sets the badge to Basic.
+            break;
+        case 2:
+            normalEyes(); // resets not deafult
+            $('#eyeName').html('Stoned'); // sets the badge to Stoned.
+            eyesType1();
+            break;
+        case 3:
+            normalEyes(); // resets not deafult
+            $('#eyeName').html('Chill'); // sets the badge to Chill.
+            eyesType2();
+            break;
+        case 4:
+            normalEyes(); // resets not deafult
+            $('#eyeName').html('Tired'); // sets the badge to Tired.
+            eyesType3();
+            break;
     }
 }
+
 
 function decorationVariation(num) {
-    $('#dnadecoration').html(num)
+    $('#dnadecoration').html(num);
+
     switch (num) {
         case 1:
-            $('#decorationName').html('Basic')
-            normaldecoration()
-            break
+            normaldecoration();
+            $('#decorationName').html('Basic');
+            break;
+        case 2:
+            normaldecoration();
+            $('#decorationName').html('Nice');
+            decorationType1();
+            break;
+        case 3:
+            normaldecoration();
+            $('#decorationName').html('Strange');
+            decorationType2();
+            break;
+        case 4:
+            normaldecoration();
+            $('#decorationName').html('Confused');
+            decorationType3();
+            break;
+        case 5:
+            normaldecoration();
+            $('#decorationName').html('Bald');
+            decorationType4();
+            break;
     }
 }
 
+
 async function normalEyes() {
-    await $('.cat__eye').find('span').css('border', 'none')
+    // finds all the span elements within .cat_eye and applies the .css(setting)
+    await $('.cat__eye').find('span').css('border', 'none');
 }
+
+async function eyesType1() {
+    await $('.cat__eye').find('span').css('border-top', '10px solid');
+}
+
+async function eyesType2() {
+    await $('.cat__eye').find('span').css({'border-top': '15px solid'});
+}
+
+async function eyesType3() {
+    await $('.cat__eye').find('span').css({'border-bottom': '10px solid',});
+}
+
 
 async function normaldecoration() {
     //Remove all style from other decorations
     //In this way we can also use normalDecoration() to reset the decoration style
-    $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" })
-    $('.cat__head-dots_first').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
-    $('.cat__head-dots_second').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
+    $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" });
+    $('.cat__head-dots_first').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" });
+    $('.cat__head-dots_second').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" });
 }
+    // Badge name Nice
+async function decorationType1() {
+    $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" });
+    $('.cat__head-dots_first').css({ "transform": "rotate(45deg)", "height": "35px", "width": "14px", "top": "-3.5px", "border-radius": "50% 0 50% 50%" });
+    $('.cat__head-dots_second').css({ "transform": "rotate(-45deg)", "height": "35px", "width": "14px", "top": "-3.5px", "border-radius": "0 50% 50% 50%" });
+  }
+    // Badge name Strange
+async function decorationType2() {
+    $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" });
+    $('.cat__head-dots_first').css({ "transform": "rotate(90deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "25% 0 25% 25%" });
+    $('.cat__head-dots_second').css({ "transform": "rotate(-90deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 25% 25% 25%" });
+  }
+    // Badge name Confused
+async function decorationType3() {
+    $('.cat__head-dots').css({ "transform": "rotate(180deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 25% 25%" });
+    $('.cat__head-dots_first').css({ "transform": "rotate(45deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" });
+    $('.cat__head-dots_second').css({ "transform": "rotate(-45deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" });
+}
+    // Badge name Bald
+async function decorationType4() {
+    $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "0px", "width": "0px", "top": "0px", "border-radius": "0 0 0 0" });
+    $('.cat__head-dots_first').css({ "transform": "rotate(0deg)", "height": "0px", "width": "0px", "top": "0px", "border-radius": "0 0 0 0" });
+    $('.cat__head-dots_second').css({ "transform": "rotate(0deg)", "height": "0px", "width": "0px", "top": "0px", "border-radius": "0 0 0 0" });
+  }
