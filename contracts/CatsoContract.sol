@@ -52,7 +52,7 @@ contract CatsoContract is IERC721, Ownable{
 
 /** Functions setters */
 
-    function transferFrom (address _from, address _to, uint256 _tokenId) public {¨
+    function transferFrom (address _from, address _to, uint256 _tokenId) public {
         require(_to != address(0));
         require(msg.sender == _from || _approvedFor(msg.sender, _tokenId) || isApprovedForAll(_from, msg.sender));
         require(_owns(_from, _tokenId));
