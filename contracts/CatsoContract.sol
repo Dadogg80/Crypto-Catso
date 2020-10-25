@@ -58,9 +58,28 @@ contract CatsoContract is IERC721, Ownable{
 
 /** Functions setters */
 
-    function breed(uint256 _dadId, uint256 _momId) public returns (uint256) {
-        require();
+    function breed(uint256 _dadId, uint256 _mumId) private returns (uint256) {
+        require(_owns(msg.sender, _dadId), "The user doesn't own the token");
+        require(_owns(msg.sender, _mumId), "The user doesn't own the token");
+        
+        (uint256 dadDna,,,,uint256 DadGeneration) = getCatso(_dadId);
+
+        (uint256 mumDna,,,,uint256 MumGeneration) = getCatso(_mumId);
+        
         uint256 newDna = _mixDna(dadDna, mumDna);
+
+        uint256 kidGen = 0;
+        if (DadGeneration < MumGeneration) {
+            kidGen = MumGeneration + 1;
+            kidGen /= 2;
+        } else if(DadGeneration > MumGeneration) {
+            kidGen = DadGeneration + 1;
+            kidGen /= 2;
+        } else {
+            kidGen = MumGeneration + 1;
+        }
+
+        _createCatso(_mumId, _dadId, kidGen, newDna, msg.sender);
     }
 
     function supportsInterface(bytes4 _interfaceId) external view returns (bool) {
@@ -71,7 +90,7 @@ contract CatsoContract is IERC721, Ownable{
         safeTransferFrom(_from, _to, _tokenId, "");
     }
 
-    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory data) external {
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory _data) public {
         require( _isApprovedOrOwner(msg.sender, _from, _to, _tokenId) );
         _safeTransfer(_from, _to, _tokenId, _data);
     } 
@@ -134,7 +153,7 @@ contract CatsoContract is IERC721, Ownable{
         return newCatsoId;
     }
 
-    function transfer(address _to,uint256 _tokenId) external {
+    function transfer(address _to, uint256 _tokenId) external {
         require(_to != address(0));
         require(_to != address(this));
         require(_owns(msg.sender, _tokenId));
@@ -188,7 +207,7 @@ contract CatsoContract is IERC721, Ownable{
     } 
 
 
-    function getCatso(uint256 _id) external view returns (uint256 genes, uint256 birthTime, uint256 mumId, uint256 dadId, uint256 generation) {
+    function getCatso(uint256 _id) public view returns (uint256 genes, uint256 birthTime, uint256 mumId, uint256 dadId, uint256 generation) {
         Kitty storage kitty = kitties[_id];
         
         birthTime = uint256(kitty.birthTime);
@@ -243,7 +262,7 @@ contract CatsoContract is IERC721, Ownable{
         return size > 0;
     }
 
-    function _mixDna(uint256 _dadDna, uint256 _mumDna) internal returns (uint256) {
+    function _mixDna(uint256 _dadDna, uint256 _mumDna) internal view returns (uint256) {
 
         uint256 inheritedDadDna = _dadDna / 100000000;
         uint256 inheritedMumDna = _mumDna % 100000000;
