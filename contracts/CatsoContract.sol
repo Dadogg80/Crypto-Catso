@@ -58,6 +58,11 @@ contract CatsoContract is IERC721, Ownable{
 
 /** Functions setters */
 
+    function breed(uint256 _dadId, uint256 _momId) public returns (uint256) {
+        require();
+        uint256 newDna = _mixDna(dadDna, mumDna);
+    }
+
     function supportsInterface(bytes4 _interfaceId) external view returns (bool) {
         return ( _interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165);
     }
@@ -238,6 +243,15 @@ contract CatsoContract is IERC721, Ownable{
         return size > 0;
     }
 
+    function _mixDna(uint256 _dadDna, uint256 _mumDna) internal returns (uint256) {
+
+        uint256 inheritedDadDna = _dadDna / 100000000;
+        uint256 inheritedMumDna = _mumDna % 100000000;
+    
+        uint256 newDna = inheritedDadDna * 100000000;
+        newDna = newDna + inheritedMumDna;
+        return newDna;
+    }
 /** - Smart Contract end */
 
 }
