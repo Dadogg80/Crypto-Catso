@@ -3,6 +3,7 @@ pragma solidity "0.5.12";
 
 /** Imports */
 import "./IERC721.sol";
+import "./IERC721Receiver.sol";
 import "./Ownable.sol";
 
 /** Contract */
@@ -12,6 +13,11 @@ contract CatsoContract is IERC721, Ownable{
     string public constant name = "Catso Tokens";
     string public constant symbol = "CAT";
     
+    /** - Interfaces for ERC721 and ERC165 */
+    bytes4 internal constant MAGIC_ERC721_RECEIVED = bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
+    bytes4 private constant _INTERFACE_ID_ERC721 = 0x80ac58cd;
+    bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
+
     /** - Varables related to the birth of a new kitten */
     uint256 public constant LIMIT_OF_GEN0 = 10;
     uint256 public gen0Counter;
@@ -38,7 +44,7 @@ contract CatsoContract is IERC721, Ownable{
 
 /** Mappings */
 
-    /*@Dev -  CatsoId => owners address */
+    /*@Dev - CatsoId => owners address */
     mapping (uint256 => address) public catIndexToOwner;
 
     /*@Dev - Owners address => number of kitties */
@@ -52,15 +58,25 @@ contract CatsoContract is IERC721, Ownable{
 
 /** Functions setters */
 
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId) public {
+        safeTransferFrom(_from, _to, _tokenId, "");
+    }
+
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId, bytes memory data) external {
+        require( _isApprovedOrOwner(msg.sender, _from, _to, _tokenId) );
+        _safeTransfer(_from, _to, _tokenId, _data);
+    } 
+
+    function _safeTransfer(address _from, address _to, uint256 _tokenId, bytes memory _data) internal {
+        _transfer(_from, _to, _tokenId);
+        require( _checkERC721Support(_from, _to, _tokenId, _data) );
+    }
+
     function transferFrom (address _from, address _to, uint256 _tokenId) public {
-        require(_to != address(0));
-        require(msg.sender == _from || _approvedFor(msg.sender, _tokenId) || isApprovedForAll(_from, msg.sender));
-        require(_owns(_from, _tokenId));
-        require(tokenId < kitties.length);
+        require( _isApprovedOrOwner(msg.sender, _from, _to, _tokenId) );
 
         _transfer(_from, _to, _tokenId);
     }
-
 
     function approve(address _to, uint256 _tokenId) public {
         require(_owns(msg.sender, _tokenId));
@@ -130,7 +146,13 @@ contract CatsoContract is IERC721, Ownable{
         emit Transfer(_from, _to, _tokenId);
     }
 
-
+    function _isApprovedOrOwner(address _spender, address _from, address _to, uint256 _tokenId) internal view returns (bool) {
+        require(_tokenId < kitties.length);
+        require(_to != address(0));
+        require(_owns(_from, _tokenId));
+        
+        return (_spender == _from || _approvedFor(_spender, _tokenId) || isApprovedForAll(_from, _spender));
+    }
 /** Function getters */
     
     function isApprovedForAll(address _owner, address operator) public view returns (bool) {
@@ -191,6 +213,28 @@ contract CatsoContract is IERC721, Ownable{
         catIndexToApproved[_tokenId] = _approved;
     }
 
+    function _approvedFor(address _claimant, uint256 _tokenId) internal view returns (bool) {
+        return catIndexToApproved[_tokenId] == _claimant;
+    }
+
+    function _checkERC721Support(address _from, address _to, uint256 _tokenId, bytes memory _data) internal returns (bool) {
+        if ( ! _isContract(_to) ) {
+            return true;
+        }
+
+        bytes4 returnData = IERC721Receiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data);
+        return returnData == MAGIC_ERC721_RECEIVED;
+    }
+
+    function _isContract(address _to) internal view returns (bool) {
+        uint32 size;
+        assembly{
+            size := extcodesize(_to)
+        }
+        return size > 0;
+    }
+
 /** - Smart Contract end */
+
 }
 
