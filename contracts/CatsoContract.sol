@@ -30,23 +30,39 @@ contract CatsoContract is IERC721, Ownable{
         uint16 generation;
     }
 
-/** Arrays */
+/** Arrays */ 
 
     /** - Kitty array containes individual kitties*/
     Kitty[] kitties;
 
 
-
- /** Mappings */
+/** Mappings */
 
     /*@Dev -  CatsoId => owners address */
-    mapping (uint => address) public catIndexToOwner;
+    mapping (uint256 => address) public catIndexToOwner;
 
     /*@Dev - Owners address => number of kitties */
     mapping (address => uint256) ownershipTokenCount;
 
+    /*@Dev - CatIndex => approved address */
+    mapping (uint256 => address) public catIndexToApproved;
+
 
 /** Functions setters */
+
+    function approve(address _to, uint256 _tokenId) public {
+        require(_owns(msg.sender, _tokenId));
+
+        _approve(_tokenId, _to);
+        emit Approval(msg.sender, _to, _tokenId);
+    }
+
+    function setApprovalForAll(address operator, bool approved) public {
+        require(operator != msg.sender);
+
+        _operatorApprovals[msg.sender][operator] = approved;
+        emit ApprovalForAll(msg.sender, operator, approved);
+    }
 
     /** - Wrapper function to create generation ZERO kitties */
     function createCatsoGen0(uint256 _genes)public onlyOwner returns (uint256) {
@@ -104,6 +120,25 @@ contract CatsoContract is IERC721, Ownable{
 
 /** Function getters */
     
+    function getKittyByOwner(address _owner) external view returns (uint[] memory ) {
+        uint[] memory result = new uint[](ownershipTokenCount[_owner]);
+        uint counter = 0;
+        for (uint i = 0; i < kitties.length; i++) {
+            if (catIndexToOwner[i] == _owner) {
+                result[counter] = i;
+                counter++;
+            }
+        }
+    }
+
+
+    function getApproved(uint256 tokenId) public view returns (address) {
+        require(tokenId < kitties.length); // Token must exist.
+        
+        return catIndexToApproved[tokenId];
+    } 
+
+
     function getCatso(uint256 _id) external view returns (uint256 genes, uint256 birthTime, uint256 mumId, uint256 dadId, uint256 generation) {
         Kitty storage kitty = kitties[_id];
         
