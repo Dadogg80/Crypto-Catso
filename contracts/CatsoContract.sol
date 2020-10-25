@@ -47,6 +47,8 @@ contract CatsoContract is IERC721, Ownable{
     /*@Dev - CatIndex => approved address */
     mapping (uint256 => address) public catIndexToApproved;
 
+    mapping (address => mapping (address => bool)) private _operatorApprovals;
+
 
 /** Functions setters */
 
@@ -112,6 +114,7 @@ contract CatsoContract is IERC721, Ownable{
 
         if (_from != address(0)) {
             ownershipTokenCount[_from]--;
+            delete catIndexToApproved[_tokenId];
         }
 
         emit Transfer(_from, _to, _tokenId);
@@ -120,7 +123,12 @@ contract CatsoContract is IERC721, Ownable{
 
 /** Function getters */
     
-    function getKittyByOwner(address _owner) external view returns (uint[] memory ) {
+    function isApprovedForAll(address _owner, address operator) public view returns (bool) {
+        return _operatorApprovals[_owner][operator];
+    }
+
+
+    function getCatsoByOwner(address _owner) external view returns (uint[] memory ) {
         uint[] memory result = new uint[](ownershipTokenCount[_owner]);
         uint counter = 0;
         for (uint i = 0; i < kitties.length; i++) {
@@ -169,10 +177,9 @@ contract CatsoContract is IERC721, Ownable{
         return catIndexToOwner[_tokenId] == _claimant;
     }
 
-
-
-
-
+    function _approve(uint256 _tokenId, address _approved) internal {
+        catIndexToApproved[_tokenId] = _approved;
+    }
 
 /** - Smart Contract end */
 }
