@@ -58,6 +58,10 @@ contract CatsoContract is IERC721, Ownable{
 
 /** Functions setters */
 
+    function supportsInterface(bytes4 _interfaceId) external view returns (bool) {
+        return ( _interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165);
+    }
+
     function safeTransferFrom(address _from, address _to, uint256 _tokenId) public {
         safeTransferFrom(_from, _to, _tokenId, "");
     }
