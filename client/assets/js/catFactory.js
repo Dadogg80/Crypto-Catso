@@ -111,26 +111,33 @@ function decorationVariation(num) {
     }
 }
 
+function animationVariation(num) {
+    $('#dnaanimation').html(num);
+    switch (num) {
+        case 1:
+            
+    }
+}
 
-async function normalEyes() {
+function normalEyes() {
     // finds all the span elements within .cat_eye and applies the .css(setting)
-    await $('.cat__eye').find('span').css('border', 'none');
+    $('.cat__eye').find('span').css('border', 'none');
 }
 
-async function eyesType1() {
-    await $('.cat__eye').find('span').css('border-top', '10px solid');
+function eyesType1() {
+    $('.cat__eye').find('span').css('border-top', '10px solid');
 }
 
-async function eyesType2() {
-    await $('.cat__eye').find('span').css({'border-top': '15px solid'});
+function eyesType2() {
+    $('.cat__eye').find('span').css({'border-top': '15px solid'});
 }
 
-async function eyesType3() {
-    await $('.cat__eye').find('span').css({'border-bottom': '10px solid',});
+function eyesType3() {
+    $('.cat__eye').find('span').css({'border-bottom': '10px solid',});
 }
 
 
-async function normaldecoration() {
+function normaldecoration() {
     //Remove all style from other decorations
     //In this way we can also use normalDecoration() to reset the decoration style
     $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" });
@@ -138,25 +145,25 @@ async function normaldecoration() {
     $('.cat__head-dots_second').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" });
 }
     // Badge name Nice
-async function decorationType1() {
+function decorationType1() {
     $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" });
     $('.cat__head-dots_first').css({ "transform": "rotate(45deg)", "height": "35px", "width": "14px", "top": "-3.5px", "border-radius": "50% 0 50% 50%" });
     $('.cat__head-dots_second').css({ "transform": "rotate(-45deg)", "height": "35px", "width": "14px", "top": "-3.5px", "border-radius": "0 50% 50% 50%" });
   }
     // Badge name Strange
-async function decorationType2() {
+function decorationType2() {
     $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" });
     $('.cat__head-dots_first').css({ "transform": "rotate(90deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "25% 0 25% 25%" });
     $('.cat__head-dots_second').css({ "transform": "rotate(-90deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 25% 25% 25%" });
   }
     // Badge name Confused
-async function decorationType3() {
+function decorationType3() {
     $('.cat__head-dots').css({ "transform": "rotate(180deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 25% 25%" });
     $('.cat__head-dots_first').css({ "transform": "rotate(45deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" });
     $('.cat__head-dots_second').css({ "transform": "rotate(-45deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" });
 }
     // Badge name Bald
-async function decorationType4() {
+function decorationType4() {
     $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "0px", "width": "0px", "top": "0px", "border-radius": "0 0 0 0" });
     $('.cat__head-dots_first').css({ "transform": "rotate(0deg)", "height": "0px", "width": "0px", "top": "0px", "border-radius": "0 0 0 0" });
     $('.cat__head-dots_second').css({ "transform": "rotate(0deg)", "height": "0px", "width": "0px", "top": "0px", "border-radius": "0 0 0 0" });

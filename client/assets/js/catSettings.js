@@ -124,3 +124,8 @@ $('#decorationmidcolor').change(()=>{
   var colorVal = $('#decorationmidcolor').val();
   decorationMidColor(colors[colorVal],colorVal);
 })
+
+$('#animation').change(()=>{
+  var animationVal = $('#animation').val();
+  animationVariation(animationVal);
+})
