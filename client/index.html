@@ -120,11 +120,22 @@
                 </div>
             </div>
 
-            <div class="col-lg-7 cattributes m-2 light-b-shadow">
-
-                <!-- Cat colors -->
+             <div class="col-lg-7 cattributes m-2 light-b-shadow">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#catsoColors" role="tab" aria-controls="home" aria-selected="true">Catso Colors</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#cattributes" role="tab" aria-controls="profile" aria-selected="false">Cattributes</a>
+              </li>
+            </ul>
+              
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="catsoColors" role="tabpanel" aria-labelledby="home-tab">
+                  
+                 
                 <div id="catColors">
-                <div class="form-group">
+                <div class="form-group" style="padding-top: 10px">
                   <!-- id headcode is the span containing the DNA code-->
                     <label for="formControlRange"><b>Head | Body</b><span class="badge badge-dark ml-2" id="headcode"></span></label>
                     <!-- Slider for id bodycolor-->
@@ -151,9 +162,13 @@
                     <!-- Slider for id mtbcolor-->
                     <input type="range" min="10" max="98" class="form-control-range" id="earcolor">
                   </div>
-
-                  <!-- Cattributes -->
-                  <div class="form-group">
+                </div>
+              </div>
+                
+              <div class="tab-pane fade" id="cattributes" role="tabpanel" aria-labelledby="profile-tab">
+                
+                <!-- Cattributes -->
+                  <div class="form-group" style="padding-top: 10px">
                       <!-- id shapecode is the span containing the DNA code-->
                       <label for="formControlRange"><b>Eyes Shape</b><span class="badge badge-dark ml-2" id="eyeName"></span></label>
                       <!-- Slider for id eyesShape-->
@@ -184,18 +199,15 @@
                   </div> 
                 </div>
               </div>
-
-                  
                   <div class="form-group">
                       <!-- id animationcode is the span containing the DNA code-->
                       <label for="formControlRange"><b>Animation</b><span class="badge badge-dark ml-2" id="animationName"></span></label>
                       <!-- Slider for id animation-->
                       <input type="range" min="1" max="6" class="form-control-range" id="animation"> 
                   </div>
-                  
-                
-
               </div>
+              </div>
+             
             </div>
           <br>
         </div>
