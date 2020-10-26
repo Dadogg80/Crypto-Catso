@@ -1,37 +1,37 @@
 /* Moving head with ears together */
 .movingHead {
-    animation: moveHead 6s infinate;
+    animation: moveHead 6s infinite;
 }
 
 .movingEarsRight {
-    animation: moveEarsRight 6s infinate;
+    animation: moveEarsRight 6s infinite;
 }
 
 .movingEarsLeft {
-    animation: moveEarsLeft 6s infinate;
+    animation: moveEarsLeft 6s infinite;
 }
 
 /* Single ear move */
 .moving-Single-EarRight {
-    animation: earRight 3s infinate;
+    animation: earRight 3s infinite;
 }
 
 .moving-Single-EarLeft {
-    animation: earLeft 3s infinate;
+    animation: earLeft 3s infinite;
 }
 
 /* Attentive cat anim */
 .attentionRight {
-    animation: earUpRight 6s infinate;
+    animation: earUpRight 6s infinite;
 }
 
 .attentionLeft {
-    animation: earUpLeft 6s infinate;
+    animation: earUpLeft 6s infinite;
 }
 
 /* Tail movement */
 .movingTail {
-    animation: moveTail 5s inifinate;
+    animation: moveTail 5s infinite;
 }
 
 /* Keyframes */

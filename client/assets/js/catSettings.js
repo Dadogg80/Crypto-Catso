@@ -23,15 +23,19 @@ $( document ).ready(function() {
   $('#dnaeyes').html(defaultDNA.eyesColor);
   $('#dnaears').html(defaultDNA.earsColor);
 
-  $('#dnashape').html(defaultDNA.eyesShape)
-  $('#dnadecoration').html(defaultDNA.decorationPattern)
-  $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
-  $('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
-  $('#dnaanimation').html(defaultDNA.animation)
-//   $('#dnaspecial').html(defaultDNA.lastNum)
+  $('#dnashape').html(defaultDNA.eyesShape);
+  $('#dnadecoration').html(defaultDNA.decorationPattern);
+  $('#dnadecorationMid').html(defaultDNA.decorationMidcolor);
+  $('#dnadecorationSides').html(defaultDNA.decorationSidescolor); 
+  $('#dnaanimation').html(defaultDNA.animation);
+  $('#dnaspecial').html(defaultDNA.lastNum);
 
   renderCat(defaultDNA);
 });
+
+function defaultCat() {
+  renderCat(defaultDNA); 
+}
 
 function getDna(){
     var dna = '';
@@ -48,6 +52,7 @@ function getDna(){
 
     return parseInt(dna);
 }
+
 
 function renderCat(dna){
     headColor(colors[dna.headcolor],dna.headcolor);
@@ -66,13 +71,16 @@ function renderCat(dna){
     $('#eyeshape').val(dna.eyesShape);
 
     decorationVariation(dna.decorationPattern);
-    $('#decorationpattern').val(dna.decorationPattern)
+    $('#decorationpattern').val(dna.decorationPattern);
 
     decorationSideColor(colors[dna.decorationSidescolor],dna.decorationSidescolor);
     $('#decorationsidecolor').val(dna.decorationSidescolor);
 
     decorationMidColor(colors[dna.decorationMidcolor],dna.decorationMidcolor);
     $('#decorationmidcolor').val(dna.decorationMidcolor);
+
+    animationVariation(dna.animation);
+    $('#animation').val(dna.animation);
 }
 
 // Changing cat colors
@@ -109,7 +117,7 @@ $('#eyeshape').change(()=>{
 // Changing the shape of the dots on Catso's head
 $('#decorationpattern').change(()=>{
   // binds the number of the slider to the variable shape
-  var num = parseInt($('#decorationpattern').val());
+  var num = parseInt( $('#decorationpattern').val() );
   decorationVariation(num);
 })
 
@@ -126,6 +134,6 @@ $('#decorationmidcolor').change(()=>{
 })
 
 $('#animation').change(()=>{
-  var animationVal = $('#animation').val();
+  var animationVal = parseInt( $('#animation').val() );
   animationVariation(animationVal);
 })

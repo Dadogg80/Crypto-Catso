@@ -113,10 +113,77 @@ function decorationVariation(num) {
 
 function animationVariation(num) {
     $('#dnaanimation').html(num);
+
     switch (num) {
         case 1:
-            
-    }
+            animationType1();
+            $('#animationName').html('Moving Head');
+            break;
+        case 2:
+            animationType2();
+            $('#animationName').html('Moving Tail');
+            break;
+        case 3:
+            animationType3();
+            $('#animationName').html('Moving Ears');
+            break;
+        case 4:
+            animationType4();
+            $('#animationName').html('Moving Right Ear');
+            break;
+        case 5:
+            animationType5();
+            $('#animationName').html('Moving Left Ear');
+            break;
+        case 6:
+            animationType6();
+            $('#animationName').html('Attention');
+            break;
+        }
+
+}
+
+function animationType1() {
+    resetAnimation();
+    $('#head').addClass("movingHead");
+}
+
+function animationType2() {
+    resetAnimation();
+    $('#tail').addClass("movingTail")
+}
+
+function animationType3() {
+    resetAnimation();
+    $('#rightEar').addClass("movingEarsRight");
+    $('#leftEar').addClass("movingEarsLeft"); 
+}
+
+function animationType4() {
+    resetAnimation();
+    $('#rightEar').addClass("moving-Single-EarRight");
+}
+
+function animationType5() {
+    resetAnimation();
+    $('#leftEar').addClass("moving-Single-EarLeft"); 
+}
+
+function animationType6() {
+    resetAnimation();
+    $('#rightEar').addClass("attentionRight"); 
+    $('#leftEar').addClass("attentionLeft");
+}
+
+function resetAnimation() {
+    $('#head').removeClass("movingHead");
+    $('#tail').removeClass("movingTail"); 
+    $('#rightEar').removeClass("movingEarsRight");
+    $('#leftEar').removeClass("movingEarsLeft"); 
+    $('#rightEar').removeClass("moving-Single-EarRight");
+    $('#leftEar').removeClass("moving-Single-EarLeft"); 
+    $('#rightEar').removeClass("attentionRight"); 
+    $('#leftEar').removeClass("attentionLeft");
 }
 
 function normalEyes() {
@@ -135,7 +202,6 @@ function eyesType2() {
 function eyesType3() {
     $('.cat__eye').find('span').css({'border-bottom': '10px solid',});
 }
-
 
 function normaldecoration() {
     //Remove all style from other decorations
