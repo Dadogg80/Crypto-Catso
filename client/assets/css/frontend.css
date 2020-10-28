@@ -8,8 +8,10 @@
     background-size: cover;
     background-position:bottom;
 }
-
-
+.btn.btn-primary:hover, .btn.btn-secondary:hover, .btn.btn-info:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+ 
 .navbar-brand {
     font-weight: 700;
 }
