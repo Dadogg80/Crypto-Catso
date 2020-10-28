@@ -30,7 +30,7 @@ $( document ).ready(function() {
   $('#dnaanimation').html(defaultDNA.animation);
   $('#dnaspecial').html(defaultDNA.lastNum);
 
-  renderCat(defaultDNA);
+  defaultCat(defaultDNA);
 });
 
 function defaultCat() {
@@ -53,6 +53,25 @@ function getDna(){
     return parseInt(dna);
 }
 
+function randomCat() {
+  let randomDNA = {
+    "headcolor" : Math.floor(Math.random() * 89) + 10,
+    "mouthColor" : Math.floor(Math.random() * 89) + 10,
+    "eyesColor" : Math.floor(Math.random() * 89) + 10,
+    "earsColor" : Math.floor(Math.random() * 89) + 10,
+
+    //Cattributes
+    "eyesShape" : Math.floor(Math.random() * 4) +1,
+    "decorationPattern" : Math.floor(Math.random() * 5) +1,
+    "decorationMidcolor" : Math.floor(Math.random() * 89) + 10,
+    "decorationSidescolor" : Math.floor(Math.random() * 89) + 10,
+    "animation" :  Math.floor(Math.random() * 6) +1,
+    "lastNum" :  1
+    }
+    console.log(`Random cat values are: \nheadcolor: ${randomDNA.headcolor}\ndecorationPattern: ${randomDNA.decorationPattern}\neyesColor: ${randomDNA.eyesColor}\neyesShape: ${randomDNA.eyesShape}\nanimation: ${randomDNA.animation}`);
+    //defaultCat(defaultDNA);
+    renderCat(randomDNA);
+}
 
 function renderCat(dna){
     headColor(colors[dna.headcolor],dna.headcolor);
