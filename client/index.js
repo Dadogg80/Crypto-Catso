@@ -10,6 +10,23 @@ $(document).ready(function() {
         user = accounts[0];
 
         console.log(instance);
+
+        /** Creates an event listener for Birth event emitted by the Smart Contract*/
+        instance.events.Birth().on('data', function(event){
+            console.log(event);
+
+            let owner = event.returnValues.owner;
+            let newCatsoId = event.returnValues.newCatsoId;
+            let mumId = event.returnValues.mumId;
+            let dadId = event.returnValues.dadId;
+            let genes = event.returnValues.genes;
+            $("#catsoInfo").css("display", "block");
+            $("#catsoInfo").text("Congratulations! \nYour new Catso is created!");
+            $("#catsoCreation").css("display", "block");
+            $("#catsoCreation").text(`Owner : ${owner} .\nCatsoId : ${newCatsoId} .\nMumId : ${mumId} .\nDadId : ${dadId} .\nGenes : ${genes} .`);
+        })
+        .on('error', console.error);
+    
     })
 })
 
