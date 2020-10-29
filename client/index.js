@@ -21,9 +21,9 @@ $(document).ready(function() {
             let dadId = event.returnValues.dadId;
             let genes = event.returnValues.genes;
             $("#catsoInfo").css("display", "block");
-            $("#catsoInfo").text("Congratulations! \nYour new Catso is created!");
+            $("#catsoInfo").text("Congratulations! Your new Catso was created!");
             $("#catsoCreation").css("display", "block");
-            $("#catsoCreation").text(`Owner : ${owner} .\nCatsoId : ${newCatsoId} .\nMumId : ${mumId} .\nDadId : ${dadId} .\nGenes : ${genes} .`);
+            $("#catsoCreation").text(`Owner : ${owner}. CatsoId : ${newCatsoId}. MumId : ${mumId}. DadId : ${dadId}. Genes : ${genes}.`);
         })
         .on('error', console.error);
     
