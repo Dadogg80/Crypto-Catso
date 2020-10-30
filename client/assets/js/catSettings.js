@@ -35,6 +35,7 @@ $( document ).ready(function() {
 
 function defaultCatso() {
   renderCatso(defaultDNA); 
+  console.log("Default Catso is rendered");
 }
 
 function getDna(){
