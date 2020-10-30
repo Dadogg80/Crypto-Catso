@@ -2,13 +2,24 @@
     background-color: #e2efff;
     border-radius: 10px;
     padding-top: 50px;
-    padding-left: 65px;
+    padding-left: 25px;
     padding-bottom: 100px;
 }
-
-.cattributes {
-    padding: 25px;
+.catBox1 {
+    background-color: #e2efff;
+    border-radius: 10px;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+.catBox2 {
     background-color: #ededed;
+    border-radius: 10px;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+.cattributes {
+    background-color: #ededed;
+    padding: 25px;
     border-radius: 10px;
 }
 
