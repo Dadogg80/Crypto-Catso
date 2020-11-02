@@ -183,21 +183,22 @@ contract CatsoContract is IERC721, Ownable{
     }
 /** Function getters */
     
-    function isApprovedForAll(address _owner, address operator) public view returns (bool) {
-        return _operatorApprovals[_owner][operator];
-    }
-
-
-    function getCatsoByOwner(address _owner) external view returns (uint[] memory ) {
+    function getCatsoByOwner(address _owner) external view returns(uint[] memory) {
         uint[] memory result = new uint[](ownershipTokenCount[_owner]);
         uint counter = 0;
-        for (uint i = 0; i < kitties.length; i++) {
+        for(uint i = 0; i < kitties.length; i++) {
             if (catIndexToOwner[i] == _owner) {
                 result[counter] = i;
                 counter++;
             }
         }
+        return result;
+    } 
+
+    function isApprovedForAll(address _owner, address operator) public view returns (bool) {
+        return _operatorApprovals[_owner][operator];
     }
+
 
 
     function getApproved(uint256 tokenId) public view returns (address) {
