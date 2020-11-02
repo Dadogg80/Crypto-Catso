@@ -2,7 +2,7 @@ var web3 = new Web3(Web3.givenProvider);
 
 var instance;
 var user;
-var contractAddress = "0x5eF962675bfa8695aEA3477335A2A576A6F276E6";
+var contractAddress = "0x1E5Cc63E94f5EB6E5BA208Ca626891ccdbd2EA5B";
 
 $(document).ready(function() {
     window.ethereum.enable().then(function(accounts){
@@ -44,4 +44,19 @@ function createCatso(){
             console.log(`Transaction Hash is: \ntxHash: ${txHash} .`);
         }
     })
+}
+
+async function getCatsos() {
+    var arrayId;
+    var kitty;
+    try{
+        arrayId = await instance.methods.getCatsoByOwner(user).call();
+    } catch(err) {
+        console.warn(err);
+    }
+    for (i = 0; i < arrayId.length; i++) {
+        kitty = await instance.methods.getCatso(arrayId[i]).call();
+        appendCatso(kitty[0], i);
+    }
+    console.log(kitty);
 }
