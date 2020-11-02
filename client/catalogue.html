@@ -1,0 +1,111 @@
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Catso's</title>
+  <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <script src="assets/bootstrap/js/popper.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <!--  <script src="assets/js/web3.min.js"></script>
+  <script src="./abi.js"></script>
+    -->
+
+  <link rel="stylesheet" href="assets/css/mystyle.css">
+  <link rel="stylesheet" href="assets/css/cats.css">
+  <link rel="stylesheet" href="assets/css/colors.css">
+  <link rel="stylesheet" href="assets/css/factory.css">
+  <link rel="stylesheet" href="assets/css/frontend.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  </head>
+  <body>
+<!-- NAVBAR-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">CRYPTO CATSO</a>
+    
+    <!--Toggeler menu appears at medium screen -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Catso Factory</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="inventory.html">My Catso's</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Marketplace</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<!-- Page Content-->
+   <div class="container p-5" style="margin-top: 12vh;margin-bottom: 10vh;">
+      <div align="center">
+        <h1 class="c-white">Catso-Inventory</h1>
+        <p class="c-white">Interact with your custom Catso's</p>
+      </div>
+  <!-- Cards -->
+    <div class="row-col-3">
+     <div class="card-deck">
+
+    <!-- CatBox1 -->
+              <div class="col-lg-4 catBox m-2 light-b-shadow">
+                <div class="card">
+                    <div id="renderCatBox1"></div>
+                  <div class="card-body">
+                    <h5 class="card-title">Catso</h5>
+                    <p class="card-text" id="catBox1_Info"></p>
+                  </div>
+                  <div class="card-footer" id="catBox1_dNa"></div>
+                </div>
+              </div>
+
+    <!-- CatBox2 -->
+              <div class="col-lg-3 catBox2 m-2 light-b-shadow">
+                <div class="card">
+                  <div>
+                  <div id="renderCatBox2"></div>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Catso</h5>
+                    <p class="card-text" id="catBox2_Info"></p>
+                  </div>
+                  <div class="card-footer" id="catBox2_dNa"></div>
+                </div>
+              </div>
+
+    <!-- CatBox3 -->
+              <div class="col-lg-4 catBox1 m-2 light-b-shadow">
+                <div class="card">
+                  <div id="renderCatBox3"></div>
+                    <div class="card-body">
+                      <h5 class="card-title">Catso</h5>
+                      <p class="card-text" id="catBox3_Info"></p>
+                    </div>
+                    <div class="card-footer" id="catBox3_dNa"></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+<!-- Footer -->
+    <footer align="left">
+        <p>Viken Blockchain Solutions 2020</p>
+    </footer>
+
+  </body>
+  <script src="assets/js/test.js"></script>
+  <script src="assets/js/inventory.js"></script>
+  <script src="assets/js/colors.js"></script>
+  <script src="assets/js/catSettings.js"></script>
+  <script src="assets/js/catFactory.js"></script>
+
+</html>
